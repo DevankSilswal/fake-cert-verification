@@ -128,12 +128,13 @@
 <body class="bg-surface text-on-surface min-h-screen">
 <!-- TopAppBar from Shared Components -->
 <header class="fixed top-0 w-full z-50 bg-slate-950/80 backdrop-blur-xl border-b border-white/5 shadow-2xl shadow-blue-900/10 flex justify-between items-center px-6 h-16 w-full">
-<div class="flex items-center gap-3">
+<a href="index.html" class="flex items-center gap-3 hover:opacity-80 transition-opacity cursor-pointer">
 <span class="material-symbols-outlined text-blue-500" data-icon="shield">shield</span>
 <span class="text-lg font-bold tracking-widest text-slate-100 uppercase font-inter tracking-tight">VeriChain Secure</span>
-</div>
+</a>
 <div class="flex items-center gap-6">
 <nav class="hidden md:flex gap-8">
+<a class="text-slate-400 hover:text-blue-300 transition-colors" href="index.html">Home</a>
 <a class="text-blue-400 font-semibold hover:text-blue-300 transition-colors" href="#">Verify</a>
 <a class="text-slate-400 hover:text-blue-300 transition-colors" href="#">Institutions</a>
 <a class="text-slate-400 hover:text-blue-300 transition-colors" href="#">Support</a>
@@ -163,7 +164,7 @@
 </div>
 </section>
 <!-- Verification Result Card Section -->
-<section class="w-full">
+<section id="result-section" class="w-full hidden">
 <div class="glass-card relative rounded-xl overflow-hidden shadow-2xl border-primary/20">
 <!-- Background Decoration -->
 <div class="absolute inset-0 cryptographic-grid opacity-10 pointer-events-none" style="background-image: radial-gradient(#adc6ff 1px, transparent 1px); background-size: 20px 20px;"></div>
@@ -180,32 +181,32 @@
 </div>
 <div class="space-y-2">
 <p class="font-label-caps text-label-caps text-primary tracking-widest uppercase">Student Name</p>
-<h2 class="font-h1 text-h1 text-on-surface leading-none">Johnathan Doe</h2>
+<h2 id="cert-name" class="font-h1 text-h1 text-on-surface leading-none"></h2>
 </div>
 <div class="space-y-2">
 <p class="font-label-caps text-label-caps text-primary tracking-widest uppercase">Course / Certification</p>
-<h3 class="font-h2 text-h2 text-on-surface-variant">Cybersecurity Ops Professional</h3>
+<h3 id="cert-course" class="font-h2 text-h2 text-on-surface-variant"></h3>
 </div>
 <!-- Stats Grid -->
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-8 border-t border-white/5">
 <div>
 <p class="font-label-caps text-label-caps text-outline uppercase mb-1">Certificate ID</p>
-<p class="font-code text-code text-on-surface">VC-882-991-TR</p>
+<p id="cert-id" class="font-code text-code text-on-surface"></p>
 </div>
 <div>
 <p class="font-label-caps text-label-caps text-outline uppercase mb-1">Verifications</p>
-<p class="font-h3 text-h3 text-on-surface">1,284</p>
+<p id="cert-verifications" class="font-h3 text-h3 text-on-surface"></p>
 </div>
 <div>
 <p class="font-label-caps text-label-caps text-outline uppercase mb-1">Date Issued</p>
-<p class="font-body-lg text-body-lg text-on-surface">Oct 24, 2024</p>
+<p id="cert-date" class="font-body-lg text-body-lg text-on-surface"></p>
 </div>
 </div>
 </div>
 <!-- Right Column: Verification & QR -->
 <div class="w-full md:w-64 flex flex-col justify-between items-center md:items-end gap-8">
 <div class="p-4 bg-white rounded-lg shadow-inner">
-<img alt="Verification QR Code" class="w-40 h-40" data-alt="A clean, high-resolution QR code rendered in a minimalist style on a stark white background. The QR code has rounded corners and a subtle tech-inspired logo integrated into its center. The lighting is even and bright, emphasizing clarity and precision. The overall aesthetic is professional and secure, intended for mobile verification scanning in a corporate or academic environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuArDghgvNzPxzLwvM0tqpT8acRMiOXvCK_HeNem6m7WliQNORH-NwQKa8lc8_6mlSM8ZXWN9_Y-a78wME8GFIQ_TxHPDOOXiOXJ-QNvRCru4GDcdsgfwCoe5A7mUakTM7E5MUxla71yk9i6fWeB6nUP1G-Ci1pcIiXM-2z034A7aho9qtlOXCUKSWeSvMEKnYxyTe-_S8472yP7oVZ6y3cYjzqDSKAXhW8kD-lM2K485tt8dNM8PtilbjZQTKqTM94A2_a6dl-Gflg"/>
+<img id="cert-qr" alt="Verification QR Code" class="w-40 h-40" src=""/>
 <p class="text-[10px] text-surface mt-2 text-center font-bold tracking-tighter uppercase">Mobile Verification Scan</p>
 </div>
 <div class="text-right hidden md:block">
@@ -227,10 +228,7 @@
 </summary>
 <div class="px-12 py-6 bg-surface-container-low/30">
 <div class="p-4 rounded bg-surface-container-highest border border-white/10 overflow-x-auto">
-<code class="font-code text-code text-primary">0x4F8A2D...91B2C3E5F7G8H9I0J1K2L3M4N5O6P7Q8R9S0T1U2V3W4X5Y6Z7A8B9C0</code>
-<button class="ml-4 text-outline hover:text-primary transition-colors">
-<span class="material-symbols-outlined text-sm" data-icon="content_copy">content_copy</span>
-</button>
+<code id="cert-hash" class="font-code text-code text-primary"></code>
 </div>
 </div>
 </details>
@@ -242,19 +240,7 @@
                             </span>
 <span class="material-symbols-outlined text-outline group-open:rotate-180 transition-transform" data-icon="expand_more">expand_more</span>
 </summary>
-<div class="px-12 py-6 bg-surface-container-low/30 space-y-3">
-<div class="flex justify-between text-xs font-code text-outline border-b border-white/5 pb-2">
-<span>2024-11-20 09:12:44 UTC</span>
-<span class="text-emerald-500">Node-Verified via Ethereum Mainnet</span>
-</div>
-<div class="flex justify-between text-xs font-code text-outline border-b border-white/5 pb-2">
-<span>2024-11-19 14:22:10 UTC</span>
-<span class="text-emerald-500">Public Inquiry: 102.33.1.201</span>
-</div>
-<div class="flex justify-between text-xs font-code text-outline border-b border-white/5 pb-2">
-<span>2024-10-24 11:00:00 UTC</span>
-<span class="text-primary font-bold">Genesis Issuance: Signed by VeriChain Authority</span>
-</div>
+<div id="cert-logs" class="px-12 py-6 bg-surface-container-low/30 space-y-3">
 </div>
 </details>
 </div>
@@ -336,13 +322,53 @@ document.addEventListener('DOMContentLoaded', () => {
             const uploadSection = document.querySelector('.border-dashed').parentElement;
             if (uploadSection) uploadSection.style.display = 'none';
             
-            // Note: Since verify.html may not have all the specific data fields in the design we just alert for now,
-            // or we could replace the body with the success info.
-            alert(`Verified! Student: ${data.certificate.student_name}, Course: ${data.certificate.course}`);
+            const cert = data.certificate;
+            document.getElementById('result-section').classList.remove('hidden');
+            document.getElementById('cert-name').textContent = cert.student_name;
+            document.getElementById('cert-course').textContent = cert.course;
+            document.getElementById('cert-id').textContent = cert.certificate_id.substring(0, 13) + '...';
+            document.getElementById('cert-verifications').textContent = cert.verification_count;
+            document.getElementById('cert-date').textContent = new Date(cert.upload_date).toLocaleDateString();
+            document.getElementById('cert-qr').src = `${API_URL}/${cert.qr_code}`;
+            document.getElementById('cert-hash').textContent = cert.hash;
+            
+            const logsContainer = document.getElementById('cert-logs');
+            logsContainer.innerHTML = '';
+            cert.verification_logs.forEach(log => {
+                const div = document.createElement('div');
+                div.className = 'flex justify-between text-xs font-code text-outline border-b border-white/5 pb-2';
+                div.innerHTML = `<span>${new Date(log.date).toLocaleString()}</span><span class="text-emerald-500">Verified via IP: ${log.ip}</span>`;
+                logsContainer.appendChild(div);
+            });
+            
+            // Notification toast
+            const toast = document.querySelector('.fixed.bottom-8.right-8');
+            if(toast) {
+                toast.classList.remove('opacity-0', 'translate-y-2');
+                toast.querySelector('p:last-child').textContent = `Hash: ${cert.hash.substring(0,10)}... verified on blockchain.`;
+                setTimeout(() => toast.classList.add('opacity-0', 'translate-y-2'), 4000);
+            }
         } else {
             window.location.href = 'invalid.html';
         }
     }
+
+    // Interactive logic for buttons and links
+    const helpBtn = document.querySelector('button.fixed.bottom-8.right-8');
+    if(helpBtn) {
+        helpBtn.addEventListener('click', () => {
+            alert("How it works:\n1. Drop the certificate document.\n2. The system creates a secure hash of the file.\n3. It verifies the hash against the blockchain database.\n4. Shows the original certificate details if valid.");
+        });
+    }
+
+    document.querySelectorAll('a').forEach(a => {
+        if (a.textContent.includes('Institution') || a.textContent.includes('Support')) {
+            a.addEventListener('click', (e) => {
+                e.preventDefault();
+                alert('This module is currently under development. Coming soon!');
+            });
+        }
+    });
 });
 
     </script>

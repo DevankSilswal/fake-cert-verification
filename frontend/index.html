@@ -257,14 +257,30 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         
         const loginBtn = Array.from(adminView.querySelectorAll('button')).find(b => b.textContent.includes('Login'));
+        const usernameInput = adminView.querySelector('input[type="text"]');
         const passwordInput = adminView.querySelector('input[type="password"]');
-        if(loginBtn && passwordInput) {
-            loginBtn.addEventListener('click', () => {
-                if (passwordInput.value === 'admin123') {
+        
+        // Handle eye icon toggle
+        const visibilityBtn = Array.from(adminView.querySelectorAll('button')).find(b => !b.textContent.includes('Login'));
+        if(visibilityBtn) {
+            visibilityBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                if(passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                } else {
+                    passwordInput.type = 'password';
+                }
+            });
+        }
+
+        if(loginBtn && passwordInput && usernameInput) {
+            loginBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (usernameInput.value === 'University of petroleum and energy studies' && passwordInput.value === 'upes bidholi') {
                     localStorage.setItem('auth', 'admin');
                     window.location.href = 'upload.html';
                 } else {
-                    alert('Invalid password');
+                    alert('Invalid Credentials. Hint: Use username "University of petroleum and energy studies" and password "upes bidholi"');
                 }
             });
         }
