@@ -12,8 +12,10 @@ load_dotenv()
 app = Flask(__name__)
 CORS(app)
 
-# ================= CONFIG =================
 app.config['MAX_CONTENT_LENGTH'] = 5 * 1024 * 1024
+
+ADMIN_USERNAME = os.getenv("ADMIN_USERNAME", "admin")
+ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "password")
 
 MONGO_URI = os.getenv("MONGO_URI")
 
@@ -24,16 +26,26 @@ client = MongoClient(MONGO_URI)
 db = client["certverify"]
 collection = db["certificates"]
 
-# ================= UTIL =================
 def generate_hash(data):
     return hashlib.sha256(data).hexdigest()
 
-# ================= HOME =================
-@app.route("/")
-def home():
-    return jsonify({"status": "Backend Running ✅"})
+try:
+    db.command("ping")
+    print("✅ Connected to MongoDB!")
+except Exception as e:
+    print(f"❌ MongoDB connection failed: {e}")
 
-# ================= UPLOAD =================
+@app.route("/login", methods=["POST"])
+def login():
+    data = request.json
+    if not data or 'username' not in data or 'password' not in data:
+        return jsonify({"error": "Missing username or password"}), 400
+    
+    if data['username'] == ADMIN_USERNAME and data['password'] == ADMIN_PASSWORD:
+        return jsonify({"success": True}), 200
+    else:
+        return jsonify({"error": "Invalid credentials"}), 401
+
 @app.route("/upload", methods=["POST"])
 def upload():
     try:
@@ -58,7 +70,6 @@ def upload():
         if collection.find_one({"hash": hash_value}):
             return jsonify({"error": "Certificate already exists"}), 400
 
-        # ================= QR GENERATION =================
         os.makedirs("qr_codes", exist_ok=True)
 
         qr_url = f"http://localhost:8501/?verify={hash_value}"
@@ -67,7 +78,6 @@ def upload():
         qr_path = f"qr_codes/{hash_value[:8]}.png"
         qr.save(qr_path)
 
-        # ================= SAVE =================
         cert = {
             "certificate_id": str(uuid.uuid4()),
             "student_name": student_name,
@@ -87,8 +97,6 @@ def upload():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-
-# ================= VERIFY FILE =================
 @app.route("/verify", methods=["POST"])
 def verify():
     try:
@@ -127,8 +135,6 @@ def verify():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-
-# ================= VERIFY QR =================
 @app.route("/verify-hash", methods=["POST"])
 def verify_hash():
     try:
@@ -162,14 +168,10 @@ def verify_hash():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-
-# ================= SERVE QR =================
 @app.route('/qr_codes/<path:filename>')
 def serve_qr_code(filename):
     return send_from_directory('qr_codes', filename)
 
-
-# ================= GET ALL =================
 @app.route("/certificates", methods=["GET"])
 def certificates():
     try:
@@ -183,7 +185,5 @@ def certificates():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-
-# ================= RUN =================
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5001, debug=True)

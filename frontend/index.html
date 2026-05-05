@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html class="dark" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -121,27 +120,22 @@
   </style>
   </head>
 <body class="bg-background text-on-background min-h-screen flex flex-col font-body-md overflow-x-hidden">
-<!-- TopAppBar -->
 <header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-lg py-md bg-surface/30 dark:bg-surface/30 backdrop-blur-xl border-b border-outline-variant/20">
 <div class="flex items-center gap-sm">
 <span class="material-symbols-outlined text-primary" data-icon="shield_lock">shield_lock</span>
-<h1 class="font-h2 text-h2 font-bold text-on-surface dark:text-on-surface">VeriChain Secure</h1>
+<h1 class="font-h2 text-h2 font-bold text-on-surface dark:text-on-surface">FAKE CERTIFICATE VERIFIER</h1>
 </div>
 <nav class="hidden md:flex items-center gap-lg">
 <a class="font-h3 text-h3 text-primary dark:text-primary font-bold" href="#">Portal</a>
 <a class="font-h3 text-h3 text-on-surface-variant dark:text-on-surface-variant hover:bg-white/5 transition-colors px-sm py-xs rounded" href="#">Support</a>
 </nav>
 </header>
-<!-- Main Content Area -->
 <main class="flex-grow flex flex-col items-center justify-center relative px-margin py-xl pt-[120px] cryptographic-grid">
-<!-- Background decorative elements -->
 <div class="absolute inset-0 pointer-events-none overflow-hidden">
-<div class="absolute top-1/4 -left-20 w-96 h-96 bg-primary/10 rounded-full blur-[120px]"></div>
-<div class="absolute bottom-1/4 -right-20 w-96 h-96 bg-tertiary-container/10 rounded-full blur-[120px]"></div>
+<div class="absolute top-1/4 -left-20 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+<div class="absolute bottom-1/4 -right-20 w-96 h-96 bg-tertiary-container/10 rounded-full blur-3xl"></div>
 </div>
-<!-- Glassmorphic Login Card -->
 <div class="glass-card w-full max-w-[480px] rounded-xl overflow-hidden z-10 p-xl shadow-2xl">
-<!-- Header Section -->
 <div class="text-center mb-xl">
 <div class="inline-flex items-center justify-center p-md bg-primary-container/20 rounded-full mb-md">
 <span class="material-symbols-outlined text-primary text-[32px]" data-icon="verified_user">verified_user</span>
@@ -149,12 +143,10 @@
 <h2 class="font-h2 text-h2 mb-xs">Welcome Back</h2>
 <p class="font-body-md text-on-surface-variant">Please authenticate to access the vault</p>
 </div>
-<!-- Role Tabs -->
 <div class="flex p-xs bg-surface-container-lowest/50 rounded-lg mb-lg border border-outline-variant/30">
 <button class="flex-1 py-sm font-label-caps text-label-caps rounded-lg bg-primary text-on-primary transition-all shadow-lg active:scale-95">Admin</button>
 <button class="flex-1 py-sm font-label-caps text-label-caps rounded-lg text-on-surface-variant hover:text-on-surface transition-all active:scale-95">Verifier</button>
 </div>
-<!-- Admin View (Default) -->
 <div class="space-y-lg" id="admin-view">
 <div class="space-y-sm">
 <label class="font-label-caps text-label-caps text-on-surface-variant ml-xs">Administrator Identity</label>
@@ -183,7 +175,6 @@
                     </button>
 </div>
 </div>
-<!-- Verifier View (Hidden Logic Placeholder) -->
 <div class="hidden space-y-lg text-center pt-md" id="verifier-view">
 <p class="font-body-md text-on-surface-variant px-lg">No password required for rapid credential verification. Secure session will be initiated.</p>
 <button class="w-full bg-secondary-container text-on-secondary-container font-h3 text-h3 py-xl rounded-lg border border-primary/20 flex flex-col items-center justify-center gap-md hover:bg-secondary-container/80 transition-all group">
@@ -196,16 +187,14 @@
 <span class="font-label-caps text-[10px] text-on-surface-variant/60 uppercase tracking-widest">Network Status: Operational</span>
 </div>
 </div>
-<!-- Security Badge -->
 <div class="mt-xl flex flex-wrap justify-center gap-xl opacity-40 grayscale hover:grayscale-0 hover:opacity-100 transition-all">
 <img alt="ISO 27001 Certified" class="h-8 w-auto" data-alt="A clean, minimalist security certification badge featuring a white shield icon on a deep navy circular background. The style is professional and corporate, matching a high-end blockchain security aesthetic with crisp vector lines and subtle glows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC49tjd2zd33ghn5xEwZ-dZB5nPIfS7KAuXihqBFxO8VzngV-Q9Iou3A1yhI1Ynz9NipUzTFHm31NpLS_sY8LQ-2-kUz196zg4K6h8LSAvH2j7kbZuXy_kAa9rttXw7BgREbuabgYzAN4sVs-1KBaBaJ-FV3Og5Fb5DZX7LbLbvX6YAtG6pyTdBnxbBYzDbY6NzOMmlYg9LGI-qEqU0XPbGKTgAK0l5uhmF17V7zhTiWcdk0GsbGrWj3r1-Emgr-hWUE9MwrEux2rI"/>
 <img alt="Blockchain Verified" class="h-8 w-auto" data-alt="An abstract blockchain node logo consisting of interconnected geometric hexagons in a metallic silver finish. The design is sleek and modern, set against a dark background that suggests a high-security cryptographic environment with premium lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIjs3TMKmFofFPvjd5vSJHFj2mnzJxmSalcAr5xEORCgTshwzQlWPsCPRQzMqG-9RcA7lLq1kWmVq4GepWR0HEoVzfufzXK2yC3DuYY22gMqIzoHugIlMoLVH9AOT510lxOxGYowucRh_y3l-yKvuzQFGVlwOW0GPKXzJBXb1DoKkUoLP_eS6c6WgfqsMBMb-k-pabVEWYc48vBbrvVhy2cryYYV9nyzZhNGpWGIjXNLIcV58BxVLEeaRxEa5CkAGPD3iCCTkv_iI"/>
 </div>
 </main>
-<!-- Institutional Footer -->
 <footer class="w-full max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-md px-margin py-lg bg-transparent">
 <div class="flex items-center gap-md">
-<span class="font-label-caps text-label-caps text-on-surface-variant/70">© 2024 VeriChain Institutional. All rights reserved.</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant/70">© 2024 FAKE CERTIFICATE VERIFIER Institutional. All rights reserved.</span>
 </div>
 <div class="flex gap-lg">
 <a class="font-body-md text-body-md text-on-surface-variant/70 hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Security Protocol</a>
@@ -213,31 +202,23 @@
 <a class="font-body-md text-body-md text-on-surface-variant/70 hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Terms of Service</a>
 </div>
 </footer>
-<!-- Background Image Layer -->
 <div class="fixed inset-0 -z-10 bg-background overflow-hidden">
 <div class="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(18,20,20,0.8),rgba(18,20,20,1))]"></div>
 <img alt="Cryptographic Background" class="w-full h-full object-cover opacity-20" data-alt="A highly detailed close-up of a digital cryptographic mesh. Glowing neon blue lines connect nodes in a 3D space, creating an intricate web of data. The lighting is low-key with a deep navy and black palette, conveying a sense of profound security and advanced technology within a vast server-like environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtwGLPGCBOJFvh6Wue8zp8jBnP8-po4Gsuh3Pu_LSR0Dqz8PTcOOZ1XaFFaeKL1TwJ1mU1bCLU9XBGwEIu0vLZgWNlWBn2R639KGHJncZpeh9u6d0ulNzJFCfe6PnBN-HROhHgHhQGXW_5zgz3x6ygVnqIoD_EF__uMdYz6j6LIaMrcxclE6zEVcvatsc3ZWMynF2WijTIMRtPFbHTmYLM_LxVt6LJTe7yXdNdVW7-gGWSdFOYFmN09XfQ9T0tAJ_7ruR4R7FXrMQ"/>
 </div>
-
     <script>
-    /* INJECTED JS */
     const API_URL = "http://localhost:5001";
-    
-    
 document.addEventListener('DOMContentLoaded', () => {
-    // Check if URL has ?verify=
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.has('verify')) {
         window.location.href = 'verify.html?hash=' + urlParams.get('verify');
     }
-
     const tabs = document.querySelectorAll('.flex.p-xs > button');
     if(tabs.length >= 2) {
         const adminBtn = tabs[0];
         const verifierBtn = tabs[1];
         const adminView = document.getElementById('admin-view');
         const verifierView = document.getElementById('verifier-view');
-
         adminBtn.addEventListener('click', () => {
             adminBtn.classList.add('bg-primary', 'text-on-primary', 'shadow-lg');
             adminBtn.classList.remove('text-on-surface-variant', 'hover:text-on-surface');
@@ -246,7 +227,6 @@ document.addEventListener('DOMContentLoaded', () => {
             adminView.classList.remove('hidden');
             verifierView.classList.add('hidden');
         });
-
         verifierBtn.addEventListener('click', () => {
             verifierBtn.classList.add('bg-primary', 'text-on-primary', 'shadow-lg');
             verifierBtn.classList.remove('text-on-surface-variant', 'hover:text-on-surface');
@@ -255,12 +235,9 @@ document.addEventListener('DOMContentLoaded', () => {
             verifierView.classList.remove('hidden');
             adminView.classList.add('hidden');
         });
-        
         const loginBtn = Array.from(adminView.querySelectorAll('button')).find(b => b.textContent.includes('Login'));
         const usernameInput = adminView.querySelector('input[type="text"]');
         const passwordInput = adminView.querySelector('input[type="password"]');
-        
-        // Handle eye icon toggle
         const visibilityBtn = Array.from(adminView.querySelectorAll('button')).find(b => !b.textContent.includes('Login'));
         if(visibilityBtn) {
             visibilityBtn.addEventListener('click', (e) => {
@@ -272,19 +249,33 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }
-
         if(loginBtn && passwordInput && usernameInput) {
-            loginBtn.addEventListener('click', (e) => {
+            loginBtn.addEventListener('click', async (e) => {
                 e.preventDefault();
-                if (usernameInput.value === 'University of petroleum and energy studies' && passwordInput.value === 'upes bidholi') {
-                    localStorage.setItem('auth', 'admin');
-                    window.location.href = 'upload.html';
-                } else {
-                    alert('Invalid Credentials. Hint: Use username "University of petroleum and energy studies" and password "upes bidholi"');
+                const btnOriginalText = loginBtn.innerHTML;
+                loginBtn.innerHTML = 'Authenticating...';
+                try {
+                    const res = await fetch(API_URL + '/login', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            username: usernameInput.value,
+                            password: passwordInput.value
+                        })
+                    });
+                    if (res.ok) {
+                        localStorage.setItem('auth', 'admin');
+                        window.location.href = 'upload.html';
+                    } else {
+                        alert('Invalid Credentials.');
+                    }
+                } catch (err) {
+                    alert('Error connecting to authentication server.');
+                } finally {
+                    loginBtn.innerHTML = btnOriginalText;
                 }
             });
         }
-
         const verifyBtn = Array.from(verifierView.querySelectorAll('button')).find(b => b.textContent.includes('Continue'));
         if(verifyBtn) {
             verifyBtn.addEventListener('click', () => {
@@ -293,7 +284,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
-
     </script>
-    
 </body></html>

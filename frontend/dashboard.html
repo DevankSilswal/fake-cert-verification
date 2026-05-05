@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html class="dark" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -125,11 +124,10 @@
   </style>
   </head>
 <body class="bg-background text-on-background min-h-screen cryptographic-grid">
-<!-- TopAppBar Shell -->
 <header class="fixed top-0 w-full z-50 bg-slate-950/80 backdrop-blur-xl border-b border-white/5 shadow-2xl shadow-blue-900/10 flex justify-between items-center px-6 h-16 w-full font-inter tracking-tight">
 <div class="flex items-center gap-4">
 <span class="material-symbols-outlined text-blue-500" data-icon="shield">shield</span>
-<span class="text-lg font-bold tracking-widest text-slate-100 uppercase">VeriChain Secure</span>
+<span class="text-lg font-bold tracking-widest text-slate-100 uppercase">FAKE CERTIFICATE VERIFIER</span>
 </div>
 <div class="flex items-center gap-4">
 <span class="text-slate-400 font-medium text-sm hidden md:block">System Status: Secure</span>
@@ -138,7 +136,6 @@
 </div>
 </div>
 </header>
-<!-- NavigationDrawer Shell -->
 <aside class="fixed left-0 top-0 h-full w-64 border-r border-white/5 bg-slate-950/90 backdrop-blur-2xl flex flex-col pt-20 z-40 hidden md:flex">
 <div class="px-6 mb-8">
 <h2 class="text-blue-500 font-black text-label-caps tracking-widest uppercase">ADMIN PORTAL</h2>
@@ -160,17 +157,13 @@
 </div>
 </nav>
 </aside>
-<!-- Main Content Canvas -->
 <main class="md:ml-64 pt-24 pb-12 px-6 lg:px-12">
 <div class="max-w-7xl mx-auto">
-<!-- Page Header -->
 <div class="mb-10">
 <h1 class="font-h1 text-h1 text-on-background mb-2">Analytics Overview</h1>
-<p class="font-body-md text-on-surface-variant max-w-2xl">Real-time cryptographic audit trail and certificate distribution metrics for the global VeriChain network.</p>
+<p class="font-body-md text-on-surface-variant max-w-2xl">Real-time cryptographic audit trail and certificate distribution metrics for the global FAKE CERTIFICATE VERIFIER network.</p>
 </div>
-<!-- Stats Grid -->
 <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter mb-12">
-<!-- Stat Card 1 -->
 <div class="glass-surface p-8 rounded-xl relative overflow-hidden group">
 <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16 blur-3xl group-hover:bg-primary/10 transition-colors"></div>
 <div class="flex justify-between items-start mb-4">
@@ -188,7 +181,6 @@
 <div class="h-full bg-blue-500 w-[72%] shadow-[0_0_10px_rgba(59,130,246,0.5)]"></div>
 </div>
 </div>
-<!-- Stat Card 2 -->
 <div class="glass-surface p-8 rounded-xl relative overflow-hidden group">
 <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16 blur-3xl group-hover:bg-primary/10 transition-colors"></div>
 <div class="flex justify-between items-start mb-4">
@@ -207,7 +199,6 @@
 </div>
 </div>
 </div>
-<!-- Recent Certificates Table Container -->
 <div class="glass-surface rounded-xl overflow-hidden">
 <div class="p-6 border-b border-white/5 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white/[0.01]">
 <h3 class="font-h3 text-h3 text-on-background flex items-center gap-3">
@@ -333,7 +324,6 @@
 </div>
 </div>
 </div>
-<!-- Verification Progress Visual -->
 <div class="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-gutter">
 <div class="lg:col-span-2 glass-surface p-8 rounded-xl">
 <h4 class="text-label-caps text-slate-400 mb-6">LIVE BLOCKCHAIN NODE STATUS</h4>
@@ -382,21 +372,14 @@
 </div>
 </div>
 </main>
-<!-- Visual Polish: Floating Background Elements -->
-<div class="fixed top-[20%] right-[10%] w-64 h-64 bg-blue-900/10 rounded-full blur-[120px] pointer-events-none -z-10"></div>
-<div class="fixed bottom-[10%] left-[20%] w-96 h-96 bg-blue-950/10 rounded-full blur-[150px] pointer-events-none -z-10"></div>
-
+<div class="fixed top-[20%] right-[10%] w-64 h-64 bg-blue-900/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
+<div class="fixed bottom-[10%] left-[20%] w-96 h-96 bg-blue-950/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
     <script>
-    /* INJECTED JS */
     const API_URL = "http://localhost:5001";
-    
-    
 document.addEventListener('DOMContentLoaded', () => {
     if (localStorage.getItem('auth') !== 'admin') {
         window.location.href = 'index.html';
     }
-    
-    // Quick routing for sidebar
     const links = document.querySelectorAll('nav a');
     links.forEach(link => {
         if(link.textContent.includes('Dashboard')) {
@@ -411,22 +394,17 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     });
-
     async function loadData() {
         try {
             const res = await fetch(`${API_URL}/certificates`);
             const data = await res.json();
-            
-            // Update stats
-            const statsCards = document.querySelectorAll('.grid > div > div > h3');
+            const statsCards = document.querySelectorAll('.grid > div > h2');
             if (statsCards.length >= 2) {
                 statsCards[0].textContent = data.length.toString();
                 let totalVerifs = 0;
                 data.forEach(c => totalVerifs += c.verification_count);
                 statsCards[1].textContent = totalVerifs.toString();
             }
-
-            // Populate table
             const tbody = document.querySelector('tbody');
             if(tbody) {
                 tbody.innerHTML = '';
@@ -467,7 +445,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     loadData();
 });
-
     </script>
-    
 </body></html>
