@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #121414;
+            background-image: 
+                radial-gradient(circle at 2px 2px, rgba(173, 198, 255, 0.03) 1px, transparent 0);
+            background-size: 40px 40px;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .cryptographic-grid {
+            mask-image: radial-gradient(circle at center, black, transparent 80%);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container": "#1e2020",
+                    "surface-bright": "#37393a",
+                    "on-surface-variant": "#c1c6d7",
+                    "on-secondary-fixed-variant": "#39475f",
+                    "outline": "#8b90a0",
+                    "surface": "#121414",
+                    "surface-container-highest": "#333535",
+                    "on-primary-container": "#00285c",
+                    "outline-variant": "#414755",
+                    "on-primary-fixed": "#001a41",
+                    "surface-dim": "#121414",
+                    "primary": "#adc6ff",
+                    "primary-container": "#4b8eff",
+                    "on-tertiary-fixed-variant": "#374767",
+                    "surface-container-high": "#282a2b",
+                    "inverse-surface": "#e2e2e2",
+                    "secondary-fixed": "#d6e3ff",
+                    "background": "#121414",
+                    "on-secondary-container": "#abb9d6",
+                    "on-primary-fixed-variant": "#004493",
+                    "surface-variant": "#333535",
+                    "tertiary": "#b6c6ed",
+                    "primary-fixed-dim": "#adc6ff",
+                    "on-error-container": "#ffdad6",
+                    "on-surface": "#e2e2e2",
+                    "secondary": "#b9c7e4",
+                    "tertiary-fixed": "#d8e2ff",
+                    "on-secondary-fixed": "#0d1c32",
+                    "on-secondary": "#233148",
+                    "secondary-fixed-dim": "#b9c7e4",
+                    "on-primary": "#002e69",
+                    "surface-container-lowest": "#0c0f0f",
+                    "inverse-on-surface": "#2f3131",
+                    "tertiary-container": "#8191b5",
+                    "surface-tint": "#adc6ff",
+                    "secondary-container": "#3c4962",
+                    "error": "#ffb4ab",
+                    "inverse-primary": "#005bc1",
+                    "surface-container-low": "#1a1c1c",
+                    "on-tertiary-container": "#192948",
+                    "on-tertiary-fixed": "#091b39",
+                    "tertiary-fixed-dim": "#b6c6ed",
+                    "on-background": "#e2e2e2",
+                    "on-tertiary": "#20304f",
+                    "on-error": "#690005",
+                    "primary-fixed": "#d8e2ff",
+                    "error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "xl": "48px",
+                    "margin": "32px",
+                    "sm": "8px",
+                    "lg": "24px",
+                    "xs": "4px",
+                    "md": "16px",
+                    "unit": "4px"
+            },
+            "fontFamily": {
+                    "code": ["monospace"],
+                    "h1": ["Inter"],
+                    "label-caps": ["Inter"],
+                    "body-md": ["Inter"],
+                    "h3": ["Inter"],
+                    "h2": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "code": ["14px", {"lineHeight": "1.5", "fontWeight": "500"}],
+                    "h1": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "h3": ["24px", {"lineHeight": "1.4", "letterSpacing": "0", "fontWeight": "600"}],
+                    "h2": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen">
+<!-- TopAppBar from Shared Components -->
+<header class="fixed top-0 w-full z-50 bg-slate-950/80 backdrop-blur-xl border-b border-white/5 shadow-2xl shadow-blue-900/10 flex justify-between items-center px-6 h-16 w-full">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-blue-500" data-icon="shield">shield</span>
+<span class="text-lg font-bold tracking-widest text-slate-100 uppercase font-inter tracking-tight">VeriChain Secure</span>
+</div>
+<div class="flex items-center gap-6">
+<nav class="hidden md:flex gap-8">
+<a class="text-blue-400 font-semibold hover:text-blue-300 transition-colors" href="#">Verify</a>
+<a class="text-slate-400 hover:text-blue-300 transition-colors" href="#">Institutions</a>
+<a class="text-slate-400 hover:text-blue-300 transition-colors" href="#">Support</a>
+</nav>
+<div class="h-8 w-8 rounded-full bg-surface-container-highest border border-white/10 flex items-center justify-center overflow-hidden">
+<img alt="Admin User Profile" data-alt="A professional close-up headshot of a corporate administrator in a dark studio setting. The lighting is dramatic and moody, with cool blue highlights reflecting off their skin to match the high-security fintech aesthetic. They are wearing a sharp, dark suit, and the background is a blurred digital network pattern. The overall mood is one of institutional authority and technological expertise." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5BOQqBObhLZg0wWzQmvdd6pzgvIYx51RXvHAlHShnyzD4EjjmIYbIs4eu4nbe3BP977Hpgn6e1xdILCikcT22J87jWw0rwRBA3fcqQf34cdOAB3t1cFxlSpR-Xos33ALlOjJnJ22jBA8BWT2MrAhEOoCTUQb0CjlPkazC1hSaF5S40AM0ZPhU6vGzy1-a-8G_Ma25eNmUZUPVLynWdcz-XZNrHU6u9xtueqK00XlkX4LG6bB17lWwaRVCnYVer3MM7BiJwLQaeEo"/>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-12 px-6 max-w-6xl mx-auto space-y-12">
+<!-- Upload Zone Section -->
+<section class="w-full max-w-3xl mx-auto">
+<div class="text-center mb-8">
+<h1 class="font-h1 text-h1 text-on-surface mb-2">Public Verification Portal</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Instant cryptographic validation for all VeriChain-issued credentials.</p>
+</div>
+<div class="group relative bg-surface-container-low border-2 border-dashed border-outline-variant rounded-xl p-12 flex flex-col items-center justify-center transition-all hover:border-primary/50 hover:bg-surface-container cursor-pointer">
+<div class="mb-4 p-4 rounded-full bg-primary/10 text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl" data-icon="cloud_upload">cloud_upload</span>
+</div>
+<p class="font-h3 text-h3 text-on-surface mb-1">Drop certificate to verify</p>
+<p class="font-body-md text-body-md text-outline">Supported formats: PDF, JSON, VCC (VeriChain Certificate)</p>
+<button class="mt-6 px-6 py-2 bg-primary text-on-primary font-bold rounded-lg flex items-center gap-2 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-sm" data-icon="shield">shield</span>
+                    Select File
+                </button>
+</div>
+</section>
+<!-- Verification Result Card Section -->
+<section class="w-full">
+<div class="glass-card relative rounded-xl overflow-hidden shadow-2xl border-primary/20">
+<!-- Background Decoration -->
+<div class="absolute inset-0 cryptographic-grid opacity-10 pointer-events-none" style="background-image: radial-gradient(#adc6ff 1px, transparent 1px); background-size: 20px 20px;"></div>
+<div class="absolute -top-24 -right-24 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+<div class="absolute -bottom-24 -left-24 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+<div class="relative p-12 md:p-16 flex flex-col md:flex-row justify-between gap-12">
+<!-- Left Column: Primary Content -->
+<div class="flex-1 space-y-8">
+<div>
+<span class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-label-caps text-label-caps shadow-[0_0_15px_rgba(16,185,129,0.2)]">
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                                VALID CERTIFICATE
+                            </span>
+</div>
+<div class="space-y-2">
+<p class="font-label-caps text-label-caps text-primary tracking-widest uppercase">Student Name</p>
+<h2 class="font-h1 text-h1 text-on-surface leading-none">Johnathan Doe</h2>
+</div>
+<div class="space-y-2">
+<p class="font-label-caps text-label-caps text-primary tracking-widest uppercase">Course / Certification</p>
+<h3 class="font-h2 text-h2 text-on-surface-variant">Cybersecurity Ops Professional</h3>
+</div>
+<!-- Stats Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-8 border-t border-white/5">
+<div>
+<p class="font-label-caps text-label-caps text-outline uppercase mb-1">Certificate ID</p>
+<p class="font-code text-code text-on-surface">VC-882-991-TR</p>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-outline uppercase mb-1">Verifications</p>
+<p class="font-h3 text-h3 text-on-surface">1,284</p>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-outline uppercase mb-1">Date Issued</p>
+<p class="font-body-lg text-body-lg text-on-surface">Oct 24, 2024</p>
+</div>
+</div>
+</div>
+<!-- Right Column: Verification & QR -->
+<div class="w-full md:w-64 flex flex-col justify-between items-center md:items-end gap-8">
+<div class="p-4 bg-white rounded-lg shadow-inner">
+<img alt="Verification QR Code" class="w-40 h-40" data-alt="A clean, high-resolution QR code rendered in a minimalist style on a stark white background. The QR code has rounded corners and a subtle tech-inspired logo integrated into its center. The lighting is even and bright, emphasizing clarity and precision. The overall aesthetic is professional and secure, intended for mobile verification scanning in a corporate or academic environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuArDghgvNzPxzLwvM0tqpT8acRMiOXvCK_HeNem6m7WliQNORH-NwQKa8lc8_6mlSM8ZXWN9_Y-a78wME8GFIQ_TxHPDOOXiOXJ-QNvRCru4GDcdsgfwCoe5A7mUakTM7E5MUxla71yk9i6fWeB6nUP1G-Ci1pcIiXM-2z034A7aho9qtlOXCUKSWeSvMEKnYxyTe-_S8472yP7oVZ6y3cYjzqDSKAXhW8kD-lM2K485tt8dNM8PtilbjZQTKqTM94A2_a6dl-Gflg"/>
+<p class="text-[10px] text-surface mt-2 text-center font-bold tracking-tighter uppercase">Mobile Verification Scan</p>
+</div>
+<div class="text-right hidden md:block">
+<p class="font-label-caps text-label-caps text-outline uppercase">Issuing Authority</p>
+<p class="text-on-surface font-bold text-lg">Global VeriChain Registry</p>
+<p class="text-outline text-xs italic">Decentralized Node: #US-EAST-442</p>
+</div>
+</div>
+</div>
+<!-- Technical Section Accordions -->
+<div class="border-t border-white/5 bg-surface-container-lowest/50">
+<details class="group border-b border-white/5">
+<summary class="flex justify-between items-center px-12 py-4 cursor-pointer hover:bg-white/5 transition-colors">
+<span class="font-label-caps text-label-caps text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="terminal">terminal</span>
+                                VIEW SECURE HASH
+                            </span>
+<span class="material-symbols-outlined text-outline group-open:rotate-180 transition-transform" data-icon="expand_more">expand_more</span>
+</summary>
+<div class="px-12 py-6 bg-surface-container-low/30">
+<div class="p-4 rounded bg-surface-container-highest border border-white/10 overflow-x-auto">
+<code class="font-code text-code text-primary">0x4F8A2D...91B2C3E5F7G8H9I0J1K2L3M4N5O6P7Q8R9S0T1U2V3W4X5Y6Z7A8B9C0</code>
+<button class="ml-4 text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="content_copy">content_copy</span>
+</button>
+</div>
+</div>
+</details>
+<details class="group">
+<summary class="flex justify-between items-center px-12 py-4 cursor-pointer hover:bg-white/5 transition-colors">
+<span class="font-label-caps text-label-caps text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="history">history</span>
+                                VERIFICATION LOGS
+                            </span>
+<span class="material-symbols-outlined text-outline group-open:rotate-180 transition-transform" data-icon="expand_more">expand_more</span>
+</summary>
+<div class="px-12 py-6 bg-surface-container-low/30 space-y-3">
+<div class="flex justify-between text-xs font-code text-outline border-b border-white/5 pb-2">
+<span>2024-11-20 09:12:44 UTC</span>
+<span class="text-emerald-500">Node-Verified via Ethereum Mainnet</span>
+</div>
+<div class="flex justify-between text-xs font-code text-outline border-b border-white/5 pb-2">
+<span>2024-11-19 14:22:10 UTC</span>
+<span class="text-emerald-500">Public Inquiry: 102.33.1.201</span>
+</div>
+<div class="flex justify-between text-xs font-code text-outline border-b border-white/5 pb-2">
+<span>2024-10-24 11:00:00 UTC</span>
+<span class="text-primary font-bold">Genesis Issuance: Signed by VeriChain Authority</span>
+</div>
+</div>
+</details>
+</div>
+</div>
+</section>
+<!-- Footer Visual/Brand Section -->
+<section class="flex flex-col md:flex-row justify-between items-center gap-8 py-12 border-t border-white/5 opacity-50">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-2xl" data-icon="verified_user">verified_user</span>
+<p class="text-xs font-label-caps tracking-widest text-outline">SECURED BY MULTI-SIGNATURE BLOCKCHAIN CONSENSUS</p>
+</div>
+<div class="flex gap-12 text-xs font-label-caps text-outline">
+<a class="hover:text-primary transition-colors" href="#">PRIVACY POLICY</a>
+<a class="hover:text-primary transition-colors" href="#">API ACCESS</a>
+<a class="hover:text-primary transition-colors" href="#">GOVERNANCE</a>
+</div>
+</section>
+</main>
+<!-- Contextual FAB - Only for main verification tasks -->
+<button class="fixed bottom-8 right-8 bg-primary-container text-on-primary-container p-4 rounded-full shadow-2xl hover:scale-110 transition-transform flex items-center gap-2 group">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-300 font-bold whitespace-nowrap">How it works</span>
+</button>
+
+    <script>
+    /* INJECTED JS */
+    const API_URL = "http://localhost:5001";
+    
+    
+document.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const hash = urlParams.get('hash');
+    
+    // Get file upload elements
+    const fileInput = document.querySelector('input[type="file"]');
+    
+    if (hash) {
+        verifyHash(hash);
+    } else if(fileInput) {
+        fileInput.addEventListener('change', async (e) => {
+            if (e.target.files.length > 0) {
+                verifyFile(e.target.files[0]);
+            }
+        });
+    }
+
+    async function verifyHash(hashValue) {
+        try {
+            const res = await fetch(`${API_URL}/verify-hash`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({hash: hashValue})
+            });
+            const data = await res.json();
+            handleResult(data);
+        } catch (err) {
+            alert('Verification error: ' + err.message);
+        }
+    }
+
+    async function verifyFile(file) {
+        try {
+            const formData = new FormData();
+            formData.append('file', file);
+            const res = await fetch(`${API_URL}/verify`, {
+                method: 'POST',
+                body: formData
+            });
+            const data = await res.json();
+            handleResult(data);
+        } catch (err) {
+            alert('Verification error: ' + err.message);
+        }
+    }
+
+    function handleResult(data) {
+        if (data.valid) {
+            // Hide upload section, show success info
+            const uploadSection = document.querySelector('.border-dashed').parentElement;
+            if (uploadSection) uploadSection.style.display = 'none';
+            
+            // Note: Since verify.html may not have all the specific data fields in the design we just alert for now,
+            // or we could replace the body with the success info.
+            alert(`Verified! Student: ${data.certificate.student_name}, Course: ${data.certificate.course}`);
+        } else {
+            window.location.href = 'invalid.html';
+        }
+    }
+});
+
+    </script>
+    
+</body></html>

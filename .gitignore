@@ -1,6 +1,6 @@
-venv/
 __pycache__/
-*.pyc
+venv/
 .env
-backend/qr_codes/
+node_modules/
+*.pyc
 *.log
