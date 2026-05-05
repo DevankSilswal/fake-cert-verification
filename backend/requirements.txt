@@ -4,3 +4,4 @@ python-dotenv
 flask-cors
 pillow
 qrcode[pil]
+prometheus-flask-exporter

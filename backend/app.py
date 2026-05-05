@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify, send_from_directory
 from pymongo import MongoClient, ReturnDocument
+from prometheus_flask_exporter import PrometheusMetrics
 import hashlib
 import os
 from dotenv import load_dotenv
@@ -11,6 +12,7 @@ import qrcode
 load_dotenv()
 app = Flask(__name__)
 CORS(app)
+metrics = PrometheusMetrics(app)
 
 app.config['MAX_CONTENT_LENGTH'] = 5 * 1024 * 1024
 
