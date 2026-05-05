@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VeriChain Secure - Upload Certificate</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error-container": "#93000a",
+                    "inverse-primary": "#005bc1",
+                    "tertiary": "#b6c6ed",
+                    "primary-fixed-dim": "#adc6ff",
+                    "secondary-container": "#3c4962",
+                    "surface": "#121414",
+                    "on-surface-variant": "#c1c6d7",
+                    "on-primary": "#002e69",
+                    "surface-tint": "#adc6ff",
+                    "outline": "#8b90a0",
+                    "on-primary-fixed": "#001a41",
+                    "background": "#121414",
+                    "on-primary-container": "#00285c",
+                    "on-error": "#690005",
+                    "on-tertiary": "#20304f",
+                    "on-tertiary-fixed-variant": "#374767",
+                    "primary-container": "#4b8eff",
+                    "on-primary-fixed-variant": "#004493",
+                    "secondary-fixed-dim": "#b9c7e4",
+                    "inverse-surface": "#e2e2e2",
+                    "on-secondary-fixed-variant": "#39475f",
+                    "on-secondary": "#233148",
+                    "on-tertiary-container": "#192948",
+                    "on-background": "#e2e2e2",
+                    "error": "#ffb4ab",
+                    "surface-container-high": "#282a2b",
+                    "surface-container-lowest": "#0c0f0f",
+                    "surface-bright": "#37393a",
+                    "primary-fixed": "#d8e2ff",
+                    "on-secondary-container": "#abb9d6",
+                    "outline-variant": "#414755",
+                    "tertiary-fixed-dim": "#b6c6ed",
+                    "primary": "#adc6ff",
+                    "on-secondary-fixed": "#0d1c32",
+                    "surface-variant": "#333535",
+                    "tertiary-container": "#8191b5",
+                    "on-error-container": "#ffdad6",
+                    "secondary": "#b9c7e4",
+                    "surface-dim": "#121414",
+                    "on-tertiary-fixed": "#091b39",
+                    "surface-container-low": "#1a1c1c",
+                    "on-surface": "#e2e2e2",
+                    "inverse-on-surface": "#2f3131",
+                    "tertiary-fixed": "#d8e2ff",
+                    "surface-container": "#1e2020",
+                    "secondary-fixed": "#d6e3ff",
+                    "surface-container-highest": "#333535"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "label-caps": ["Inter"],
+                    "h3": ["Inter"],
+                    "body-md": ["Inter"],
+                    "h2": ["Inter"],
+                    "h1": ["Inter"],
+                    "code": ["monospace"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "h3": ["24px", {"lineHeight": "1.4", "letterSpacing": "0", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "h2": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "h1": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "code": ["14px", {"lineHeight": "1.5", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .cryptographic-grid {
+            background-image: radial-gradient(rgba(173, 198, 255, 0.05) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md selection:bg-primary-container selection:text-on-primary-container min-h-screen overflow-x-hidden cryptographic-grid">
+<!-- TopAppBar Shell -->
+<header class="bg-slate-950/80 backdrop-blur-xl border-b border-white/5 shadow-2xl shadow-blue-900/10 fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 w-full">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-blue-500" data-icon="shield">shield</span>
+<h1 class="text-lg font-bold tracking-widest text-slate-100 uppercase font-inter tracking-tight">VeriChain Secure</h1>
+</div>
+<div class="flex items-center gap-4">
+<div class="text-right hidden md:block">
+<p class="text-[10px] font-label-caps text-slate-500 uppercase tracking-widest">Authorized Access</p>
+<p class="text-xs font-medium text-slate-300">Admin User Profile</p>
+</div>
+<div class="w-10 h-10 rounded-full border border-white/10 bg-surface-container overflow-hidden">
+<img alt="Admin Profile" class="w-full h-full object-cover" data-alt="A professional close-up portrait of a technology administrator in a dimly lit, high-security data center environment. The lighting is moody with cool blue highlights reflecting off metallic surfaces. He is wearing a minimalist dark suit, suggesting institutional authority and cryptographic precision. The overall aesthetic is clean, corporate, and modern, aligning with a high-stakes enterprise blockchain security theme." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3XV4OciZH1RFFXL3OVbkhUOjKiy7bnmQ6C7kpNStMOm0jy7NGQDFd2d7X_d7Dpg6OFf-ilaWafyNmyM2pbnjZs9OK3vFdUmPy3wkgQ1s3iLUKTFpyP8pf6Y2m_dB9ZWDMgO8Zmphq23dSScHMhwlvp00SaU38E7rUybrTenLu0C8y9h1YBkciNmxdr_gBqpcrcSSNHdjqwurIJr7TVxXdD4tdoP4CVbEwPD_B1kcUwbcXIp--B0XZXAfUvyov7iHayBQ9whmVHTo"/>
+</div>
+</div>
+</header>
+<!-- NavigationDrawer Shell -->
+<aside class="bg-slate-950/90 backdrop-blur-2xl fixed left-0 top-0 h-full w-64 border-r border-white/5 flex flex-col pt-20 h-full z-40 hidden md:flex">
+<div class="px-6 mb-8">
+<h2 class="text-blue-500 font-black text-xs tracking-widest font-inter text-sm font-medium">ADMIN PORTAL</h2>
+</div>
+<nav class="flex flex-col gap-1">
+<!-- Dashboard (Inactive) -->
+<a class="text-slate-400 hover:bg-white/5 py-3 px-6 flex items-center gap-3 transition-all hover:text-blue-300 font-inter text-sm font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<!-- Upload Certificate (Active) -->
+<a class="text-blue-400 bg-blue-500/10 border-r-2 border-blue-500 py-3 px-6 flex items-center gap-3 font-inter text-sm font-medium transition-all translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="cloud_upload">cloud_upload</span>
+<span>Upload Certificate</span>
+</a>
+<!-- Logout (Inactive) -->
+<a class="mt-auto text-slate-400 hover:bg-white/5 py-3 px-6 flex items-center gap-3 transition-all hover:text-blue-300 font-inter text-sm font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span>Logout</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Area -->
+<main class="pt-24 pb-12 px-6 md:ml-64 flex justify-center">
+<div class="w-full max-w-4xl">
+<!-- Breadcrumb / Context -->
+<div class="mb-8">
+<div class="flex items-center gap-2 text-slate-500 font-label-caps mb-2">
+<span>Admin</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary">Certificate Issuance</span>
+</div>
+<h1 class="font-h1 text-h1 text-on-surface">Upload New Certificate</h1>
+<p class="text-on-surface-variant font-body-md mt-2 max-w-2xl">
+                    Securely anchor digital credentials to the immutable ledger. All certificates are cryptographically signed before deployment.
+                </p>
+</div>
+<!-- Form Card -->
+<div class="glass-panel rounded-xl p-8 md:p-12 shadow-2xl relative overflow-hidden">
+<!-- Abstract Glow -->
+<div class="absolute -top-24 -right-24 w-64 h-64 bg-primary/5 blur-[100px] rounded-full pointer-events-none"></div>
+<form class="space-y-10 relative z-10">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Student Name -->
+<div class="space-y-3">
+<label class="font-label-caps text-on-surface-variant block uppercase tracking-widest text-[11px]" for="student-name">
+                                Student Name
+                            </label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-primary transition-colors text-[20px]" data-icon="person">person</span>
+<input class="w-full bg-surface-container-lowest border border-white/5 text-on-surface rounded-lg py-4 pl-12 pr-4 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all placeholder:text-slate-600 font-body-md" id="student-name" placeholder="Johnathan Doe" type="text"/>
+</div>
+</div>
+<!-- Course -->
+<div class="space-y-3">
+<label class="font-label-caps text-on-surface-variant block uppercase tracking-widest text-[11px]" for="course-name">
+                                Course Name
+                            </label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-primary transition-colors text-[20px]" data-icon="school">school</span>
+<input class="w-full bg-surface-container-lowest border border-white/5 text-on-surface rounded-lg py-4 pl-12 pr-4 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all placeholder:text-slate-600 font-body-md" id="course-name" placeholder="Cybersecurity Foundations" type="text"/>
+</div>
+</div>
+</div>
+<!-- Drag-and-Drop Zone -->
+<div class="space-y-3">
+<label class="font-label-caps text-on-surface-variant block uppercase tracking-widest text-[11px]">
+                            Certificate Document
+                        </label>
+<div class="group cursor-pointer relative border-2 border-dashed border-white/10 hover:border-primary/40 rounded-xl p-12 bg-surface-container-low transition-all hover:bg-surface-container-high/50">
+<div class="flex flex-col items-center justify-center text-center space-y-4">
+<div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-2 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[32px]" data-icon="cloud_upload">cloud_upload</span>
+</div>
+<div>
+<p class="text-on-surface font-h3 mb-1">Drag and drop certificate file here or browse</p>
+<p class="text-slate-500 text-sm">Supported formats: PDF, SVG, JPEG (Max 10MB)</p>
+</div>
+<button class="mt-4 px-6 py-2 rounded-full border border-white/10 text-slate-300 hover:text-on-surface hover:border-white/20 transition-all font-label-caps text-[11px] uppercase tracking-widest" type="button">
+                                    Select File
+                                </button>
+</div>
+<input class="absolute inset-0 opacity-0 cursor-pointer" type="file"/>
+</div>
+</div>
+<!-- Additional Security Meta (Simulation) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 rounded-lg bg-surface-container-lowest/50 border border-white/5">
+<div class="flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+<span class="text-[11px] font-label-caps text-slate-400">Ledger Status: Node Syncing</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="lock" data-weight="fill" style="font-variation-settings: 'FILL' 1;">lock</span>
+<span class="text-[11px] font-label-caps text-slate-400">AES-256 Encryption Enabled</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="verified_user">verified_user</span>
+<span class="text-[11px] font-label-caps text-slate-400">Immutable Hash Generation</span>
+</div>
+</div>
+<!-- Primary Action Button -->
+<button class="w-full bg-primary-container hover:bg-primary transition-all text-on-primary-container font-h3 py-6 rounded-xl flex items-center justify-center gap-3 shadow-lg shadow-blue-900/20 group" type="submit">
+<span class="material-symbols-outlined" data-icon="shield">shield</span>
+<span>Secure &amp; Upload Certificate</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</form>
+</div>
+<!-- Security Notice Footer -->
+<div class="mt-12 flex flex-col md:flex-row items-center justify-between gap-6 px-4">
+<div class="flex items-center gap-3">
+<img alt="Blockchain Icon" class="w-8 h-8 rounded-lg" data-alt="A highly detailed 3D render of a single cryptographic block glowing with internal blue light. The block is constructed from semi-transparent geometric lattice structures, suspended in a dark void. Tiny sparks of digital energy dance around its edges. The style is ultra-modern, high-tech, and clinical, emphasizing the unshakeable trust and security of blockchain technology." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDikPzZkhYCxz5zzeRI9thB4iGz-V80InvoUR6TuiIisCyIqI-LF8Fqj2NO3EQR5sjStyeeD5NF4fC48KsSMczkPw5ngoEjcmgkx1qte9mAfet7B4kBfM7PNWjT3jHiBajIcYQlTcsGhO2ylh-oxiu7JAWVMvk5o2rHmB-BrOVK5HasXqhEoe8gNedLqP7VBkXZnvgMTNOOFkiZ05kvo-bpjla8gPFtiGnRsdBz_L84dfOG2kxi-miii_1k9U6m9CxtTZIkO3BdMP8"/>
+<p class="text-xs text-slate-500 font-label-caps">Processed via VeriChain Mainnet Protocol v4.2</p>
+</div>
+<div class="flex gap-8">
+<a class="text-xs text-slate-500 hover:text-primary transition-colors font-label-caps" href="#">Security Protocol</a>
+<a class="text-xs text-slate-500 hover:text-primary transition-colors font-label-caps" href="#">Compliance Logs</a>
+<a class="text-xs text-slate-500 hover:text-primary transition-colors font-label-caps" href="#">Support</a>
+</div>
+</div>
+</div>
+</main>
+<!-- Contextual Success Notification (Hidden by default, for UI preview) -->
+<div class="fixed bottom-8 right-8 flex items-center gap-4 bg-slate-900 border border-green-500/30 rounded-xl p-4 shadow-2xl backdrop-blur-xl max-w-md pointer-events-none transform translate-y-2 opacity-0 transition-all duration-500">
+<div class="w-12 h-12 rounded-full bg-green-500/10 flex items-center justify-center text-green-500">
+<span class="material-symbols-outlined" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div>
+<p class="text-on-surface font-semibold text-sm">Certificate Stored</p>
+<p class="text-slate-400 text-xs">Hash: 0x7f3...9a12 verified on blockchain.</p>
+</div>
+</div>
+
+    <script>
+    /* INJECTED JS */
+    const API_URL = "http://localhost:5001";
+    
+    
+document.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('auth') !== 'admin') {
+        window.location.href = 'index.html';
+    }
+    
+    // Quick routing for sidebar
+    const links = document.querySelectorAll('nav a');
+    links.forEach(link => {
+        if(link.textContent.includes('Dashboard')) {
+            link.href = 'dashboard.html';
+        } else if (link.textContent.includes('Upload')) {
+            link.href = 'upload.html';
+        } else if (link.textContent.includes('Logout')) {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                localStorage.removeItem('auth');
+                window.location.href = 'index.html';
+            });
+        }
+    });
+
+    const form = document.querySelector('form');
+    if(!form) return;
+    
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const studentName = form.querySelector('input[id="student-name"]').value;
+        const course = form.querySelector('input[id="course-name"]').value;
+        const fileInput = form.querySelector('input[type="file"]');
+        
+        if (!studentName || !course || !fileInput.files.length) {
+            alert('Please fill all fields');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('student_name', studentName);
+        formData.append('course', course);
+        formData.append('file', fileInput.files[0]);
+
+        try {
+            const res = await fetch(`${API_URL}/upload`, {
+                method: 'POST',
+                body: formData
+            });
+            const data = await res.json();
+            if (res.ok) {
+                alert('Certificate Uploaded Successfully!');
+                form.reset();
+                window.location.href = 'dashboard.html';
+            } else {
+                alert('Error: ' + data.error);
+            }
+        } catch (err) {
+            alert('Upload failed: ' + err.message);
+        }
+    });
+});
+
+    </script>
+    
+</body></html>

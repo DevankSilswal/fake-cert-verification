@@ -1,26 +1,283 @@
-<!doctype html>
-<html>
-  <head><meta charset="utf-8"><title>Fake Cert Verify</title></head>
-  <body style="font-family: Arial; padding:24px;">
-    <h2>Register Certificate</h2>
-    <input id="issuer" placeholder="Issuer name"><br><br>
-    <input id="fileReg" type="file"><button onclick="upload('/upload','fileReg','issuer')">Upload</button>
+<!DOCTYPE html>
 
-    <h2>Verify Certificate</h2>
-    <input id="fileVer" type="file"><button onclick="upload('/verify','fileVer')">Verify</button>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .cryptographic-grid {
+            background-image: radial-gradient(circle at 2px 2px, rgba(173, 198, 255, 0.05) 1px, transparent 0);
+            background-size: 40px 40px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-container": "#192948",
+                      "surface-container-low": "#1a1c1c",
+                      "on-tertiary-fixed": "#091b39",
+                      "on-background": "#e2e2e2",
+                      "tertiary-fixed-dim": "#b6c6ed",
+                      "tertiary-container": "#8191b5",
+                      "surface-tint": "#adc6ff",
+                      "secondary-container": "#3c4962",
+                      "error": "#ffb4ab",
+                      "inverse-primary": "#005bc1",
+                      "on-secondary": "#233148",
+                      "on-secondary-fixed": "#0d1c32",
+                      "secondary-fixed-dim": "#b9c7e4",
+                      "on-primary": "#002e69",
+                      "inverse-on-surface": "#2f3131",
+                      "surface-container-lowest": "#0c0f0f",
+                      "on-surface": "#e2e2e2",
+                      "secondary": "#b9c7e4",
+                      "tertiary-fixed": "#d8e2ff",
+                      "error-container": "#93000a",
+                      "primary-fixed": "#d8e2ff",
+                      "on-error": "#690005",
+                      "on-tertiary": "#20304f",
+                      "on-primary-container": "#00285c",
+                      "outline-variant": "#414755",
+                      "on-primary-fixed": "#001a41",
+                      "surface-dim": "#121414",
+                      "surface": "#121414",
+                      "surface-container-highest": "#333535",
+                      "surface-container": "#1e2020",
+                      "surface-bright": "#37393a",
+                      "on-surface-variant": "#c1c6d7",
+                      "on-secondary-fixed-variant": "#39475f",
+                      "outline": "#8b90a0",
+                      "tertiary": "#b6c6ed",
+                      "on-error-container": "#ffdad6",
+                      "primary-fixed-dim": "#adc6ff",
+                      "on-secondary-container": "#abb9d6",
+                      "on-primary-fixed-variant": "#004493",
+                      "surface-variant": "#333535",
+                      "surface-container-high": "#282a2b",
+                      "inverse-surface": "#e2e2e2",
+                      "secondary-fixed": "#d6e3ff",
+                      "background": "#121414",
+                      "primary": "#adc6ff",
+                      "primary-container": "#4b8eff",
+                      "on-tertiary-fixed-variant": "#374767"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "md": "16px",
+                      "xs": "4px",
+                      "unit": "4px",
+                      "xl": "48px",
+                      "margin": "32px",
+                      "sm": "8px",
+                      "lg": "24px",
+                      "gutter": "24px"
+              },
+              "fontFamily": {
+                      "code": ["monospace"],
+                      "h1": ["Inter"],
+                      "label-caps": ["Inter"],
+                      "body-md": ["Inter"],
+                      "h3": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "h2": ["Inter"]
+              },
+              "fontSize": {
+                      "code": ["14px", {"lineHeight": "1.5", "fontWeight": "500"}],
+                      "h1": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "h3": ["24px", {"lineHeight": "1.4", "letterSpacing": "0", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "h2": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-lg py-md bg-surface/30 dark:bg-surface/30 backdrop-blur-xl border-b border-outline-variant/20">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="shield_lock">shield_lock</span>
+<h1 class="font-h2 text-h2 font-bold text-on-surface dark:text-on-surface">VeriChain Secure</h1>
+</div>
+<nav class="hidden md:flex items-center gap-lg">
+<a class="font-h3 text-h3 text-primary dark:text-primary font-bold" href="#">Portal</a>
+<a class="font-h3 text-h3 text-on-surface-variant dark:text-on-surface-variant hover:bg-white/5 transition-colors px-sm py-xs rounded" href="#">Support</a>
+</nav>
+</header>
+<!-- Main Content Area -->
+<main class="flex-grow flex flex-col items-center justify-center relative px-margin py-xl pt-[120px] cryptographic-grid">
+<!-- Background decorative elements -->
+<div class="absolute inset-0 pointer-events-none overflow-hidden">
+<div class="absolute top-1/4 -left-20 w-96 h-96 bg-primary/10 rounded-full blur-[120px]"></div>
+<div class="absolute bottom-1/4 -right-20 w-96 h-96 bg-tertiary-container/10 rounded-full blur-[120px]"></div>
+</div>
+<!-- Glassmorphic Login Card -->
+<div class="glass-card w-full max-w-[480px] rounded-xl overflow-hidden z-10 p-xl shadow-2xl">
+<!-- Header Section -->
+<div class="text-center mb-xl">
+<div class="inline-flex items-center justify-center p-md bg-primary-container/20 rounded-full mb-md">
+<span class="material-symbols-outlined text-primary text-[32px]" data-icon="verified_user">verified_user</span>
+</div>
+<h2 class="font-h2 text-h2 mb-xs">Welcome Back</h2>
+<p class="font-body-md text-on-surface-variant">Please authenticate to access the vault</p>
+</div>
+<!-- Role Tabs -->
+<div class="flex p-xs bg-surface-container-lowest/50 rounded-lg mb-lg border border-outline-variant/30">
+<button class="flex-1 py-sm font-label-caps text-label-caps rounded-lg bg-primary text-on-primary transition-all shadow-lg active:scale-95">Admin</button>
+<button class="flex-1 py-sm font-label-caps text-label-caps rounded-lg text-on-surface-variant hover:text-on-surface transition-all active:scale-95">Verifier</button>
+</div>
+<!-- Admin View (Default) -->
+<div class="space-y-lg" id="admin-view">
+<div class="space-y-sm">
+<label class="font-label-caps text-label-caps text-on-surface-variant ml-xs">Administrator Identity</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors" data-icon="person">person</span>
+<input class="w-full bg-surface-container-lowest border border-outline-variant/30 rounded-lg py-md pl-[48px] pr-md font-code text-code focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all placeholder:text-on-surface-variant/30" placeholder="admin_username" type="text"/>
+</div>
+</div>
+<div class="space-y-sm">
+<div class="flex justify-between items-center px-xs">
+<label class="font-label-caps text-label-caps text-on-surface-variant">Password</label>
+<a class="font-label-caps text-[10px] text-primary/70 hover:text-primary uppercase tracking-wider" href="#">Forgot?</a>
+</div>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors" data-icon="lock">lock</span>
+<input class="w-full bg-surface-container-lowest border border-outline-variant/30 rounded-lg py-md pl-[48px] pr-md font-code text-code focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all placeholder:text-on-surface-variant/30" placeholder="••••••••••••" type="password"/>
+<button class="absolute right-md top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-on-surface">
+<span class="material-symbols-outlined text-[20px]" data-icon="visibility">visibility</span>
+</button>
+</div>
+</div>
+<div class="pt-md">
+<button class="w-full bg-primary text-on-primary font-h3 text-h3 py-md rounded-lg flex items-center justify-center gap-sm shadow-lg hover:shadow-primary/20 active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined" data-icon="shield">shield</span>
+                        Login
+                    </button>
+</div>
+</div>
+<!-- Verifier View (Hidden Logic Placeholder) -->
+<div class="hidden space-y-lg text-center pt-md" id="verifier-view">
+<p class="font-body-md text-on-surface-variant px-lg">No password required for rapid credential verification. Secure session will be initiated.</p>
+<button class="w-full bg-secondary-container text-on-secondary-container font-h3 text-h3 py-xl rounded-lg border border-primary/20 flex flex-col items-center justify-center gap-md hover:bg-secondary-container/80 transition-all group">
+<span class="material-symbols-outlined text-[48px] group-hover:scale-110 transition-transform" data-icon="qr_code_scanner">qr_code_scanner</span>
+                    Continue to Verification
+                 </button>
+</div>
+<div class="mt-xl flex items-center justify-center gap-sm">
+<span class="w-2 h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.6)]"></span>
+<span class="font-label-caps text-[10px] text-on-surface-variant/60 uppercase tracking-widest">Network Status: Operational</span>
+</div>
+</div>
+<!-- Security Badge -->
+<div class="mt-xl flex flex-wrap justify-center gap-xl opacity-40 grayscale hover:grayscale-0 hover:opacity-100 transition-all">
+<img alt="ISO 27001 Certified" class="h-8 w-auto" data-alt="A clean, minimalist security certification badge featuring a white shield icon on a deep navy circular background. The style is professional and corporate, matching a high-end blockchain security aesthetic with crisp vector lines and subtle glows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC49tjd2zd33ghn5xEwZ-dZB5nPIfS7KAuXihqBFxO8VzngV-Q9Iou3A1yhI1Ynz9NipUzTFHm31NpLS_sY8LQ-2-kUz196zg4K6h8LSAvH2j7kbZuXy_kAa9rttXw7BgREbuabgYzAN4sVs-1KBaBaJ-FV3Og5Fb5DZX7LbLbvX6YAtG6pyTdBnxbBYzDbY6NzOMmlYg9LGI-qEqU0XPbGKTgAK0l5uhmF17V7zhTiWcdk0GsbGrWj3r1-Emgr-hWUE9MwrEux2rI"/>
+<img alt="Blockchain Verified" class="h-8 w-auto" data-alt="An abstract blockchain node logo consisting of interconnected geometric hexagons in a metallic silver finish. The design is sleek and modern, set against a dark background that suggests a high-security cryptographic environment with premium lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIjs3TMKmFofFPvjd5vSJHFj2mnzJxmSalcAr5xEORCgTshwzQlWPsCPRQzMqG-9RcA7lLq1kWmVq4GepWR0HEoVzfufzXK2yC3DuYY22gMqIzoHugIlMoLVH9AOT510lxOxGYowucRh_y3l-yKvuzQFGVlwOW0GPKXzJBXb1DoKkUoLP_eS6c6WgfqsMBMb-k-pabVEWYc48vBbrvVhy2cryYYV9nyzZhNGpWGIjXNLIcV58BxVLEeaRxEa5CkAGPD3iCCTkv_iI"/>
+</div>
+</main>
+<!-- Institutional Footer -->
+<footer class="w-full max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-md px-margin py-lg bg-transparent">
+<div class="flex items-center gap-md">
+<span class="font-label-caps text-label-caps text-on-surface-variant/70">© 2024 VeriChain Institutional. All rights reserved.</span>
+</div>
+<div class="flex gap-lg">
+<a class="font-body-md text-body-md text-on-surface-variant/70 hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Security Protocol</a>
+<a class="font-body-md text-body-md text-on-surface-variant/70 hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-on-surface-variant/70 hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Terms of Service</a>
+</div>
+</footer>
+<!-- Background Image Layer -->
+<div class="fixed inset-0 -z-10 bg-background overflow-hidden">
+<div class="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(18,20,20,0.8),rgba(18,20,20,1))]"></div>
+<img alt="Cryptographic Background" class="w-full h-full object-cover opacity-20" data-alt="A highly detailed close-up of a digital cryptographic mesh. Glowing neon blue lines connect nodes in a 3D space, creating an intricate web of data. The lighting is low-key with a deep navy and black palette, conveying a sense of profound security and advanced technology within a vast server-like environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtwGLPGCBOJFvh6Wue8zp8jBnP8-po4Gsuh3Pu_LSR0Dqz8PTcOOZ1XaFFaeKL1TwJ1mU1bCLU9XBGwEIu0vLZgWNlWBn2R639KGHJncZpeh9u6d0ulNzJFCfe6PnBN-HROhHgHhQGXW_5zgz3x6ygVnqIoD_EF__uMdYz6j6LIaMrcxclE6zEVcvatsc3ZWMynF2WijTIMRtPFbHTmYLM_LxVt6LJTe7yXdNdVW7-gGWSdFOYFmN09XfQ9T0tAJ_7ruR4R7FXrMQ"/>
+</div>
 
-    <pre id="out" style="background:#f7f7f7;padding:12px;border:1px solid #ddd;margin-top:18px;"></pre>
-<script>
-function upload(path, fileId, issuerId=null){
-  const form = new FormData();
-  const f = document.getElementById(fileId).files[0];
-  if(!f){ alert('Select file'); return; }
-  form.append('file', f);
-  if(issuerId) form.append('issuer', document.getElementById(issuerId).value);
-  fetch('http://localhost:5000'+path, { method:'POST', body: form })
-    .then(r => r.json()).then(j => document.getElementById('out').innerText = JSON.stringify(j,null,2))
-    .catch(e => document.getElementById('out').innerText = e);
-}
-</script>
-  </body>
-</html>
+    <script>
+    /* INJECTED JS */
+    const API_URL = "http://localhost:5001";
+    
+    
+document.addEventListener('DOMContentLoaded', () => {
+    // Check if URL has ?verify=
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('verify')) {
+        window.location.href = 'verify.html?hash=' + urlParams.get('verify');
+    }
+
+    const tabs = document.querySelectorAll('.flex.p-xs > button');
+    if(tabs.length >= 2) {
+        const adminBtn = tabs[0];
+        const verifierBtn = tabs[1];
+        const adminView = document.getElementById('admin-view');
+        const verifierView = document.getElementById('verifier-view');
+
+        adminBtn.addEventListener('click', () => {
+            adminBtn.classList.add('bg-primary', 'text-on-primary', 'shadow-lg');
+            adminBtn.classList.remove('text-on-surface-variant', 'hover:text-on-surface');
+            verifierBtn.classList.remove('bg-primary', 'text-on-primary', 'shadow-lg');
+            verifierBtn.classList.add('text-on-surface-variant', 'hover:text-on-surface');
+            adminView.classList.remove('hidden');
+            verifierView.classList.add('hidden');
+        });
+
+        verifierBtn.addEventListener('click', () => {
+            verifierBtn.classList.add('bg-primary', 'text-on-primary', 'shadow-lg');
+            verifierBtn.classList.remove('text-on-surface-variant', 'hover:text-on-surface');
+            adminBtn.classList.remove('bg-primary', 'text-on-primary', 'shadow-lg');
+            adminBtn.classList.add('text-on-surface-variant', 'hover:text-on-surface');
+            verifierView.classList.remove('hidden');
+            adminView.classList.add('hidden');
+        });
+        
+        const loginBtn = Array.from(adminView.querySelectorAll('button')).find(b => b.textContent.includes('Login'));
+        const passwordInput = adminView.querySelector('input[type="password"]');
+        if(loginBtn && passwordInput) {
+            loginBtn.addEventListener('click', () => {
+                if (passwordInput.value === 'admin123') {
+                    localStorage.setItem('auth', 'admin');
+                    window.location.href = 'upload.html';
+                } else {
+                    alert('Invalid password');
+                }
+            });
+        }
+
+        const verifyBtn = Array.from(verifierView.querySelectorAll('button')).find(b => b.textContent.includes('Continue'));
+        if(verifyBtn) {
+            verifyBtn.addEventListener('click', () => {
+                window.location.href = 'verify.html';
+            });
+        }
+    }
+});
+
+    </script>
+    
+</body></html>
